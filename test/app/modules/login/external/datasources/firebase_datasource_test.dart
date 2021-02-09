@@ -46,17 +46,17 @@ main() {
   final auth = FirebaseAuthMock();
   final firebaseUser = FirebaseUserMock();
   final user = const LoggedUser(
-    name: "Jacob",
+    name: "Eduardo",
     phoneNumber: "123456",
-    email: "jacob@flutterando.com",
+    email: "Eduardo@flutterando.com",
   );
 
   final authResult = AuthResultMock();
   final datasource = FirebaseDataSourceImpl(auth);
 
   setUpAll(() {
-    when(firebaseUser.displayName).thenReturn("Jacob");
-    when(firebaseUser.email).thenReturn("jacob@flutterando.com");
+    when(firebaseUser.displayName).thenReturn("Eduardo");
+    when(firebaseUser.email).thenReturn("Eduardo@flutterando.com");
     when(firebaseUser.phoneNumber).thenReturn("123456");
     when(authResult.user).thenReturn(firebaseUser);
 
