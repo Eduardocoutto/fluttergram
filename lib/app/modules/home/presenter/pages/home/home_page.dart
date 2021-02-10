@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:fluttergram/app/core/stores/auth_store.dart';
+import 'package:fluttergram/app/modules/home/presenter/pages/home/home_controller.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -11,29 +12,39 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends ModularState<HomePage, HomeController> {
   final authStore = Modular.get<AuthStore>();
 
   Widget _getLoggedScreen() {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text("Logged!"),
-        SizedBox(
-          height: 10,
-        ),
-        if (authStore?.user?.email != null)
-          Text("email: ${authStore?.user?.email}"),
-        if (authStore?.user?.phoneNumber != null)
-          Text("phone: ${authStore?.user?.phoneNumber}"),
-        SizedBox(height: 10),
-        RaisedButton(
-          onPressed: () {
-            authStore.signOut();
-          },
-          child: Text("Logout"),
-        ),
+        _buildHeader(),
       ],
+    );
+  }
+
+  Widget _buildHeader() {
+    return Container(
+      child: Column(
+        children: [
+          Text("Logged!"),
+          SizedBox(
+            height: 10,
+          ),
+          if (authStore?.user?.email != null)
+            Text("email: ${authStore?.user?.email}"),
+          if (authStore?.user?.phoneNumber != null)
+            Text("phone: ${authStore?.user?.phoneNumber}"),
+          SizedBox(height: 10),
+          RaisedButton(
+            onPressed: () {
+              authStore.signOut();
+            },
+            child: Text("Logout"),
+          ),
+        ],
+      ),
     );
   }
 
