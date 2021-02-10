@@ -55,7 +55,7 @@ class FirebaseDataSourceImpl implements LoginDataSource {
 
   @override
   Future<UserModel> validateCode({String verificationId, String code}) async {
-    var _credential = PhoneAuthProvider.getCredential(
+    var _credential = PhoneAuthProvider.credential(
         verificationId: verificationId, smsCode: code);
     var user = (await auth.signInWithCredential(_credential)).user;
     return UserModel(
@@ -67,7 +67,7 @@ class FirebaseDataSourceImpl implements LoginDataSource {
 
   @override
   Future<UserModel> currentUser() async {
-    var user = (await auth.currentUser());
+    var user = (auth.currentUser);
 
     if (user == null) throw ErrorGetLoggedUser();
 
