@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:fluttergram/app/core/erros/errors.dart';
 import 'package:fluttergram/app/modules/login/domain/entities/login_credential.dart';
 import 'package:fluttergram/app/modules/login/domain/errors/errors.dart';
 import 'package:fluttergram/app/modules/login/domain/repositories/login_repository.dart';
@@ -13,7 +14,7 @@ class LoginRepositoryMock extends Mock implements LoginRepository {}
 
 class ConnectivityServiceMock extends Mock implements ConnectivityService {}
 
-class FirebaseUserMock extends Mock implements FirebaseUser {}
+class FirebaseUserMock extends Mock implements User {}
 
 main() {
   final repository = LoginRepositoryMock();

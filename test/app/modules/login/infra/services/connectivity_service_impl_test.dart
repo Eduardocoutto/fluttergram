@@ -1,6 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:fluttergram/app/modules/login/domain/errors/errors.dart';
+import 'package:fluttergram/app/core/erros/errors.dart';
 import 'package:fluttergram/app/modules/login/infra/drivers/connectivity_driver.dart';
 import 'package:fluttergram/app/modules/login/infra/services/connectivity_service_impl.dart';
 import 'package:mockito/mockito.dart';

@@ -10,7 +10,7 @@ import 'package:mockito/mockito.dart';
 
 class LoginRepositoryMock extends Mock implements LoginRepository {}
 
-class FirebaseUserMock extends Mock implements FirebaseUser {}
+class FirebaseUserMock extends Mock implements User {}
 
 main() {
   final repository = LoginRepositoryMock();
