@@ -1,11 +1,4 @@
-abstract class Failure implements Exception {
-  String get message;
-}
-
-class ConnectionError extends Failure {
-  final String message;
-  ConnectionError({this.message});
-}
+import 'package:fluttergram/app/core/erros/errors.dart';
 
 class ErrorLoginEmail extends Failure {
   final String message;
@@ -31,9 +24,4 @@ class NotAutomaticRetrieved implements Failure {
   final String verificationId;
   final String message;
   NotAutomaticRetrieved(this.verificationId, {this.message});
-}
-
-class InternalError implements Failure {
-  final String message;
-  InternalError({this.message});
 }
