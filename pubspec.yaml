@@ -21,11 +21,14 @@ environment:
   sdk: ">=2.7.0 <3.0.0"
 
 dependencies:
-  firebase_auth_platform_interface: ^1.1.8
+  
   string_validator: ^0.1.4
   asuka: any
-  firebase_core: ^0.4.5
-  firebase_auth: ^0.16.1
+  firebase_core: ^0.7.0
+  firebase_auth_platform_interface: ^3.0.1
+  firebase_auth: ^0.20.0+1
+  cloud_firestore: ^0.16.0
+
   dartz: ^0.9.1
   dio: ^3.0.9
   flutter_mobx: ^1.1.0+2
@@ -33,6 +36,8 @@ dependencies:
   flutter_modular: ^2.0.0+1
   equatable: ^1.2.2
   connectivity: ^2.0.2
+  
+
   flutter:
     sdk: flutter
 
