@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -13,8 +14,10 @@ class AppModule extends MainModule {
   @override
   List<Bind> get binds => [
         ...LoginModule.export,
+        ...HomeModule.export,
         $AuthStore,
         Bind((i) => FirebaseAuth.instance),
+        Bind((i) => FirebaseFirestore.instance),
         BindInject(
           (i) => Connectivity(),
           singleton: true,
