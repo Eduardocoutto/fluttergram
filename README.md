@@ -1,11 +1,16 @@
-# Login with Firebase and Clean Dart
+# Fluttergram
 
-Login with email and phone number using firebase auth, MobX, Modular and [Clean Dart](https://github.com/Flutterando/Clean-Dart).
+Upload de fotos usando o firebase
 
-## Getting Started
+## Primeiros passos
+### Configurando o ambiente
+* flutter pub get
+* flutter pub run build_runner --delete-conflicting-outputs
 
-- Create a Firebase Project.
-- Enable Authetication by Smartphone and email 
-- Registre your bundle_id Android and iOS (Not forget SHA1)
-- Download google-services.json
-- flutter run!!
+### Executanto o projeto
+* flutter run
+
+### Ambiente utilizado no desenvolvimento
+* Flutter (Channel stable, 1.22.5, on Microsoft Windows [versÃ£o 10.0.18363.1316], locale pt-BR)
+* Dart version 2.10.4
+* VS Code (version 1.52.1)
