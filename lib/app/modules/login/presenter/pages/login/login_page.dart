@@ -1,3 +1,4 @@
+import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -14,59 +15,72 @@ class _LoginPageState extends ModularState<LoginPage, LoginController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Login"),
+        title: Text(
+          "Entrar",
+          style: TextStyle(color: Colors.white),
+        ),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              TextField(
-                onChanged: controller.setEmail,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Email",
-                ),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              TextField(
-                onChanged: controller.setPassword,
-                obscureText: true,
-                decoration: InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: "Password",
-                ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Modular.link.pushNamed("/phone");
-                },
-                child: Align(
-                  alignment: Alignment.bottomRight,
-                  child: Text(
-                    "Phone Login",
-                    style: TextStyle(
-                      decoration: TextDecoration.underline,
-                    ),
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  padding: EdgeInsets.all(50),
+                  width: double.infinity,
+                  alignment: Alignment.center,
+                  child: ColorizeAnimatedTextKit(
+                    isRepeatingAnimation: true,
+                    text: [
+                      '\nFLUTTERGRAM',
+                    ],
+                    textStyle: TextStyle(fontSize: 50.0),
+                    colors: [
+                      Colors.black,
+                      Colors.grey,
+                    ],
+                    textAlign: TextAlign.start,
                   ),
                 ),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Observer(builder: (_) {
-                return RaisedButton(
-                  onPressed: controller.isValid ? controller.enterEmail : null,
-                  child: Text("ENTER"),
-                );
-              })
-            ],
+                TextField(
+                  onChanged: controller.setEmail,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: "Email",
+                  ),
+                ),
+                SizedBox(
+                  height: 10,
+                ),
+                TextField(
+                  onChanged: controller.setPassword,
+                  obscureText: true,
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: "Senha",
+                  ),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+                Observer(builder: (_) {
+                  return Row(
+                    children: [
+                      Expanded(
+                        child: RaisedButton(
+                          onPressed:
+                              controller.isValid ? controller.enterEmail : null,
+                          child: Text("ENTRAR",
+                              style: TextStyle(color: Colors.white)),
+                        ),
+                      ),
+                    ],
+                  );
+                })
+              ],
+            ),
           ),
         ),
       ),

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
+import 'package:fluttergram/app/core/services/notification_service.dart';
 import 'package:fluttergram/app/core/stores/auth_store.dart';
 import 'package:fluttergram/app/modules/login/domain/entities/login_credential.dart';
 import 'package:fluttergram/app/modules/login/domain/usecases/login_with_email.dart';
 import 'package:fluttergram/app/modules/login/presenter/utils/loading_dialog.dart';
 import 'package:mobx/mobx.dart';
-import 'package:asuka/asuka.dart' as asuka;
 
 part 'login_controller.g.dart';
 
@@ -48,7 +48,11 @@ abstract class _LoginControllerBase with Store {
     var result = await loginWithEmailUsecase(credential);
     await loading.hide();
     result.fold((failure) {
-      asuka.showSnackBar(SnackBar(content: Text(failure.message)));
+      NotificationService.notify(
+        msg: failure.message,
+        type: NOTIFICATION_TYPE.error,
+        duration: Duration(seconds: 3),
+      );
     }, (user) {
       authStore.setUser(user);
       Modular.to.popUntil(ModalRoute.withName(Modular.link.modulePath));

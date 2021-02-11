@@ -4,39 +4,41 @@ import 'package:fluttergram/app/core/erros/errors.dart';
 import 'package:fluttergram/app/modules/login/domain/entities/logged_user_info.dart';
 import 'package:fluttergram/app/modules/login/domain/entities/login_credential.dart';
 import 'package:fluttergram/app/modules/login/domain/errors/errors.dart';
+
 import 'package:fluttergram/app/modules/login/domain/repositories/login_repository.dart';
 import 'package:fluttergram/app/modules/login/domain/services/connectivity_service.dart';
 
-part 'verify_phone_code.g.dart';
+part 'register_with_email.g.dart';
 
-abstract class VerifyPhoneCode {
-  Future<Either<Failure, LoggedUserInfo>> call(LoginCredential c);
+abstract class RegisterWithEmail {
+  Future<Either<Failure, LoggedUserInfo>> call(LoginCredential credential);
 }
 
 @Injectable(singleton: false)
-class VerifyPhoneCodeImpl implements VerifyPhoneCode {
+class RegisterWithEmailImpl implements RegisterWithEmail {
   final LoginRepository repository;
   final ConnectivityService service;
 
-  VerifyPhoneCodeImpl(this.repository, this.service);
+  RegisterWithEmailImpl(this.repository, this.service);
 
   @override
-  Future<Either<Failure, LoggedUserInfo>> call(LoginCredential c) async {
-    if (!c.isValidCode) {
-      return Left(ErrorLoginPhone(message: "Invalid Code"));
-    } else if (!c.isValidVerificationId) {
-      return Left(InternalError(message: "Internal Error: VERIFICATION_ID"));
-    }
-
+  Future<Either<Failure, LoggedUserInfo>> call(
+      LoginCredential credential) async {
     var result = await service.isOnline();
 
     if (result.isLeft()) {
       return result.map((r) => null);
     }
 
-    return await repository.verifyPhoneCode(
-      verificationId: c.verificationId,
-      code: c.code,
+    if (!credential.isValidEmail) {
+      return Left(ErrorLoginEmail(message: "Email inválido"));
+    } else if (!credential.isValidPassword) {
+      return Left(ErrorLoginEmail(message: "Senha inválida"));
+    }
+
+    return await repository.registerEmail(
+      email: credential.email,
+      password: credential.password,
     );
   }
 }

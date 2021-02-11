@@ -21,7 +21,19 @@ class LoginRepositoryImpl implements LoginRepository {
       var user = await dataSource.loginEmail(email: email, password: password);
       return Right(user);
     } catch (e) {
-      return Left(ErrorLoginEmail(message: "Error login with Email"));
+      return Left(ErrorLoginEmail(message: "Erro ao fazer login com email"));
+    }
+  }
+
+  @override
+  Future<Either<Failure, LoggedUserInfo>> registerEmail(
+      {String email, String password}) async {
+    try {
+      var user =
+          await dataSource.registerEmail(email: email, password: password);
+      return Right(user);
+    } catch (e) {
+      return Left(ErrorLoginEmail(message: "Erro ao registar conta"));
     }
   }
 
@@ -33,7 +45,7 @@ class LoginRepositoryImpl implements LoginRepository {
     } on NotAutomaticRetrieved catch (e) {
       return Left(e);
     } catch (e) {
-      return Left(ErrorLoginPhone(message: "Error login with Phone"));
+      return Left(ErrorLoginPhone(message: "Erro ao fazer login com telefone"));
     }
   }
 
@@ -45,7 +57,7 @@ class LoginRepositoryImpl implements LoginRepository {
           verificationId: verificationId, code: code);
       return Right(user);
     } catch (e) {
-      return Left(ErrorLoginPhone(message: "Error login with Phone"));
+      return Left(ErrorLoginPhone(message: "Erro ao fazer login com telefone"));
     }
   }
 
