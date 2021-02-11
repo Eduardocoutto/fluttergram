@@ -148,7 +148,7 @@ class _HomePageState extends ModularState<HomePage, HomeController> {
               text: [
                 '\nFLUTTERGRAM',
               ],
-              textStyle: TextStyle(fontSize: 50.0),
+              textStyle: TextStyle(fontSize: 40.0),
               colors: [
                 Colors.black,
                 Colors.grey,
