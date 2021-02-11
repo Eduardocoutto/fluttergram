@@ -31,9 +31,9 @@ class LoginWithEmailImpl implements LoginWithEmail {
     }
 
     if (!credential.isValidEmail) {
-      return Left(ErrorLoginEmail(message: "Invalid Email"));
+      return Left(ErrorLoginEmail(message: "Email inválido"));
     } else if (!credential.isValidPassword) {
-      return Left(ErrorLoginEmail(message: "Invalid Password"));
+      return Left(ErrorLoginEmail(message: "Senha inválida"));
     }
 
     return await repository.loginEmail(

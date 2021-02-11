@@ -5,6 +5,8 @@ import 'package:fluttergram/app/modules/login/domain/entities/logged_user_info.d
 abstract class LoginRepository {
   Future<Either<Failure, LoggedUserInfo>> loginEmail(
       {String email, String password});
+  Future<Either<Failure, LoggedUserInfo>> registerEmail(
+      {String email, String password});
   Future<Either<Failure, LoggedUserInfo>> loginPhone({String phone});
   Future<Either<Failure, LoggedUserInfo>> verifyPhoneCode(
       {String verificationId, String code});
