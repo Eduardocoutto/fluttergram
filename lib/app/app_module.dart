@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:connectivity/connectivity.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttergram/app/app_widget.dart';
@@ -18,6 +19,7 @@ class AppModule extends MainModule {
         $AuthStore,
         Bind((i) => FirebaseAuth.instance),
         Bind((i) => FirebaseFirestore.instance),
+        Bind((i) => FirebaseStorage.instance),
         BindInject(
           (i) => Connectivity(),
           singleton: true,
