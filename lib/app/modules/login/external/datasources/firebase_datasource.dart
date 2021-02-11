@@ -28,6 +28,18 @@ class FirebaseDataSourceImpl implements LoginDataSource {
   }
 
   @override
+  Future<UserModel> registerEmail({String email, String password}) async {
+    var result = await auth.createUserWithEmailAndPassword(
+        email: email, password: password);
+    var user = result.user;
+    return UserModel(
+      name: user.displayName,
+      phoneNumber: user.phoneNumber,
+      email: user.email,
+    );
+  }
+
+  @override
   Future<UserModel> loginPhone({String phone}) async {
     var completer = Completer<AuthCredential>();
     await auth.verifyPhoneNumber(
